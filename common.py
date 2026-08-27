@@ -124,6 +124,11 @@ def serve(title, fields, analyze, port):
             if self.client_address[0] not in ('127.0.0.1', '::1'):
                 self._send('<h1>Loopback access only</h1>', 403)
                 return False
+            host_header = self.headers.get('Host', '').casefold()
+            allowed_hosts = {f'127.0.0.1:{port}', f'localhost:{port}', '127.0.0.1', 'localhost'}
+            if host_header not in allowed_hosts:
+                self._send('<h1>Host header not allowed</h1>', 421)
+                return False
             if not _allowed(self.client_address[0]):
                 self._send('<h1>Rate limit exceeded</h1>', 429, {'Retry-After': str(int(RATE_WINDOW))})
                 return False

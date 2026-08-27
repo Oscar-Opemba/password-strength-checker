@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: password-strength-checker
+Version: 0.3.0
+Summary: Evaluate password hygiene locally without storage or network access.
+Author: Oscar Opemba
+License: MIT License
+        
+        Copyright (c) 2026 Oscar Opemba
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Repository, https://github.com/Oscar-Opemba/password-strength-checker
+Project-URL: Issues, https://github.com/Oscar-Opemba/password-strength-checker/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Password Strength Checker
+
+Evaluate passphrases offline and explain how to improve them.
+
+This is a small, dependency-free Python 3 defensive utility designed for local learning, code review, and authorized security validation. It provides both a command-line interface and a localhost-only interactive web form.
+
+## Quick start
+
+```bash
+python3 app.py --web
+```
+
+Open <http://127.0.0.1:8083> in a browser. For CLI-capable tools, run `python3 app.py --help` to see the positional form.
+
+## Scope and privacy
+
+Use this only with systems, files, logs, or URLs you own or are explicitly authorized to assess. Network-enabled checks make a single bounded request to the exact host or URL you enter; they do not crawl, enumerate ports, brute-force credentials, exploit a vulnerability, or bypass access controls. Offline tools do not transmit their inputs. Never paste production passwords, session tokens, or private keys into a browser-hosted service.
+
+Results are heuristic review aids rather than proof of security. Validate important findings with your organization’s policies, logs, asset inventory, and an appropriate authorized testing process.
+
+## Test
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
+
+## Context
+
+The checks are aligned with defensive categories in the [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/) and, for TLS-oriented review, the type of configuration analysis described by [Qualys SSL Labs](https://www.ssllabs.com/ssltest/).
+
+## Hardening
+
+See [HARDENING.md](HARDENING.md) for the threat model and safeguards in this release. The local server is loopback-only, rate-limited, bounded, and does not follow redirects.
+
+
+## Product contract
+
+Password Strength Checker is packaged as a Python project with a stable analyzer contract and documented trust boundary. See [API_CONTRACT.md](API_CONTRACT.md), [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md), and [CHANGELOG.md](CHANGELOG.md).
+
+Install locally with `python3 -m pip install .` or run directly with `python3 app.py`.

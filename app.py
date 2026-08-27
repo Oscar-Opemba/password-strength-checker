@@ -1,3 +1,4 @@
+__version__ = "0.3.0"
 import argparse
 import json
 import math
@@ -25,6 +26,7 @@ def analyze(values):
 def main():
     parser=argparse.ArgumentParser(description='Check passphrase quality offline; never submit real secrets to a website.')
     parser.add_argument('password',nargs='?'); parser.add_argument('--web',action='store_true'); parser.add_argument('--port',type=int,default=8083)
+    parser.add_argument('--version',action='version',version=__version__)
     args=parser.parse_args()
     if args.web: serve('Password Strength Checker',[('password','Passphrase','password','Use a private example')],analyze,args.port)
     elif args.password: print(json.dumps(analyze({'password':args.password}),indent=2))

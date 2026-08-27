@@ -35,3 +35,10 @@ The checks are aligned with defensive categories in the [OWASP Web Security Test
 ## Hardening
 
 See [HARDENING.md](HARDENING.md) for the threat model and safeguards in this release. The local server is loopback-only, rate-limited, bounded, and does not follow redirects.
+
+
+## Product contract
+
+Password Strength Checker is packaged as a Python project with a stable analyzer contract and documented trust boundary. See [API_CONTRACT.md](API_CONTRACT.md), [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md), and [CHANGELOG.md](CHANGELOG.md).
+
+Install locally with `python3 -m pip install .` or run directly with `python3 app.py`.
